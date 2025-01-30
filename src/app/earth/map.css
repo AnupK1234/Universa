@@ -1,0 +1,374 @@
+/* TODO: Remove this when we have a proper way to hide the logo */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*::before,
+*::after {
+  content: "";
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.w-screen {
+  width: 100vw;
+}
+
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.transition-opacity {
+  transition: opacity 1s ease-in-out;
+}
+
+.mapboxgl-ctrl {
+  display: none !important;
+}
+
+.mapboxgl-popup {
+  max-width: 300px;
+  position: absolute;
+  z-index: 999999;
+}
+
+.mapboxgl-popup-content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 25px;
+  gap: 15px;
+  min-width: 400px;
+  max-height: 70vh;
+  overflow: hidden;
+
+  background: #263346 !important;
+  background: linear-gradient(
+      129.48deg,
+      rgba(255, 255, 255, 0.08) -0.02%,
+      rgba(255, 255, 255, 0.02) 99.93%
+    ),
+    #263346 !important;
+
+  border-radius: 40px;
+  color: #ffffff;
+  font-family: "Cera Pro", sans-serif;
+  box-shadow: none !important;
+}
+
+.mapboxgl-popup-tip {
+  display: none;
+}
+
+.popup-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 15px 5px 0 5px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  position: relative;
+}
+
+/* Slide-out animation for main-to-review */
+.slide-out {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* Slide-in animation for review-to-main */
+.slide-out-reverse {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.popup-header {
+  position: sticky;
+  top: 0;
+  background: #263346;
+  padding: 0 10px 10px 10px;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.popup-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: auto;
+}
+
+.popup-items {
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(70vh - 250px);
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+/* Add a subtle shadow to the sticky header */
+.popup-header:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 10px;
+  background: linear-gradient(
+    to bottom,
+    rgba(38, 51, 70, 1) 0%,
+    rgba(38, 51, 70, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.popup-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.popup-content h3 {
+  color: #11f4d1;
+  font-size: 22px;
+  margin: 0 0 20px 0;
+  border: none;
+}
+
+.popup-content h4 {
+  color: #ffffff;
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.status-section {
+  margin-bottom: 10px;
+}
+
+.status-section p {
+  margin: 3px 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.highlight {
+  color: #11f4d1;
+  font-weight: 600;
+}
+
+.ideas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.idea-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.idea-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.idea-description {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 18px; /* Same as status-dot width + gap */
+  line-height: 1.4;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.idea-title {
+  flex: 1;
+  font-size: 14px;
+}
+
+.paper-link {
+  color: #11f4d1;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 4px 8px;
+  background: rgba(17, 244, 209, 0.1);
+  border-radius: 4px;
+}
+
+.paper-link:hover {
+  background: rgba(17, 244, 209, 0.2);
+}
+
+.agent-popup h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.agent-popup p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.agent-popup ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.agent-popup li {
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.agent-popup li:hover {
+  background-color: rgba(17, 244, 209, 0.1);
+}
+
+.agent-popup li:last-child {
+  border-bottom: none;
+}
+
+body {
+  font-weight: 500;
+  color: #fff;
+}
+
+.text-with-dots {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.mapboxgl-popup-content h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #333333;
+  border-bottom: 2px solid #11f4d1;
+  padding-bottom: 5px;
+}
+
+.mapboxgl-popup-content ul {
+  list-style-type: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.mapboxgl-popup-content li {
+  padding: 5px 0;
+  font-size: 14px;
+  position: relative;
+}
+
+.mapboxgl-popup-content li::before {
+  content: "•";
+  color: #11f4d1;
+  font-size: 18px;
+  position: absolute;
+  left: -15px;
+  top: 2px;
+}
+
+.mapboxgl-popup-content li:hover {
+  background-color: rgba(17, 244, 209, 0.1);
+  cursor: pointer;
+}
+
+.popup-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popup-items::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.popup-items::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.popup-items::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.popup-items {
+  max-height: calc(65vh - 20px);
+  overflow-y: auto;
+}
+
+.mapboxgl-popup-close-button {
+  padding: 5px 10px;
+  margin: 1px;
+}
+
+.back-button {
+  cursor: pointer;
+  padding-inline-end: 10px;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+/* Input autophill style */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #353d5a inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #353d5a inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+

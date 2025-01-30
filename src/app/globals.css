@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  @media (max-width: 1511px) {
+    .container {
+      max-width: 1306px;
+    }
+  }
+
+  @media (max-width: 1365px) {
+    .container {
+      max-width: 964px;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .container {
+      max-width: 708px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      max-width: 460px;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .container {
+      max-width: 390px;
+    }
+  }
+
+  @media (max-width: 389) {
+    .container {
+      max-width: 280px;
+    }
+  }
+}
+
+html {
+  font-family: "Cera Pro";
+  scroll-behavior: smooth;
+}
+
+@property --card-gradient-angle {
+  syntax: "<angle>";
+  initial-value: 129deg;
+  inherits: false;
+}
+
+@property --nav-item-gradient-start {
+  syntax: "<color>";
+  initial-value: rgba(255, 255, 255, 0.1);
+  inherits: false;
+}
+
+@property --nav-item-gradient-end {
+  syntax: "<color>";
+  initial-value: rgba(255, 255, 255, 0.1);
+  inherits: false;
+}
+
+.nav-link-hoverable {
+  background: linear-gradient(
+    280deg,
+    var(--nav-item-gradient-start) -0.14%,
+    var(--nav-item-gradient-end) 100%
+  );
+
+  transition:
+    --nav-item-gradient-start 0.3s ease,
+    --nav-item-gradient-end 0.3s ease;
+}
+
+.nav-link-hoverable:hover {
+  --nav-item-gradient-start: #11b0f4;
+  --nav-item-gradient-end: #11f4d1;
+}
+
+.card {
+  background: linear-gradient(
+    129deg,
+    rgba(255, 255, 255, 0.05) -0.02%,
+    rgba(255, 255, 255, 0) 99.93%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.transparent-card {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.card::before,
+.transparent-card::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+      var(--card-gradient-angle),
+      #7c1dce -0.02%,
+      #11f4d1 16.97%,
+      rgba(124, 29, 206, 0) 33.96%,
+      rgba(124, 29, 206, 0) 64.95%
+    )
+    border-box;
+
+  border: 2px solid transparent;
+  mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: inherit;
+
+  opacity: 1;
+
+  animation-name: gradient-card;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.bounce {
+  animation: bounce 2s ease infinite;
+}
+
+@media (max-width: 1023px) {
+  .bounce {
+    animation: none;
+  }
+
+  .mobile-bounce {
+    animation: bounce-mobile 2s ease infinite;
+  }
+}
+
+.video-placeholder-bg {
+  background: linear-gradient(
+    0deg,
+    rgba(23, 36, 55, 0.2) 0%,
+    rgba(23, 36, 55, 0.2) 100%
+  );
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes bounce-mobile {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(10px);
+  }
+  60% {
+    transform: translateY(5px);
+  }
+}
+
+@property --gradient-card-number {
+}
+
+@keyframes gradient-card {
+  0% {
+    --card-gradient-angle: 129deg;
+  }
+
+  100% {
+    --card-gradient-angle: 489deg;
+  }
+}
+
+.typography-gradient-title {
+  -webkit-background-clip: text;
+}
+
+.flip-wrapper {
+  perspective: 1000px;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-wrapper:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.flip-front {
+  z-index: 2;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+.transition-all {
+  transition-duration: 200ms;
+}
+
+main {
+}
+
+.rotate-x {
+  transform: rotateX(180deg);
+}
+
+.top-bordered-card-bg {
+  background: linear-gradient(
+    0deg,
+    rgba(208, 123, 255, 0) 0%,
+    rgba(208, 123, 255, 0.1) 100%
+  );
+}
+
+.list-item {
+  padding-left: 25px;
+  position: relative;
+}
+
+.list-item::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  width: 4px;
+  height: 4px;
+  background-color: #11f4d1;
+  border-radius: 50%;
+}
+
+.backdrop-blur-\[15px\] {
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.backdrop-blur-\[20px\] {
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.nuah-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.backdrop-blur-preload {
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px); /* For Safari */
+}
+
+.blur-preload {
+  will-change: backdrop-filter;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px); /* For Safari */
+}
+
+.hidden-blur {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+}

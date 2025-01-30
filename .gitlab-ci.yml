@@ -1,0 +1,66 @@
+variables:
+  IMAGE_NAME: gcr.io/tidy-federation-332618/universa:staging
+stages:
+  - build-image
+  - deploy
+  - rollback
+
+build:
+  stage: build-image
+  script:
+    - echo $GCLOUD_SERVICE_KEY | base64 -d > gcloud-service-key.json
+    - gcloud auth activate-service-account --key-file=gcloud-service-key.json
+    # - echo gcloud-service-key.json | docker login -u _json_key --password-stdin https://gcr.io
+    - rm -f .env
+    - echo CMS_API_URL=${CMS_API_URL} >> .env
+    - echo CMS_API_KEY=${CMS_API_KEY} >> .env
+    - cat .env
+    - docker build -t $IMAGE_NAME .
+    - docker push $IMAGE_NAME
+  only:
+    - main
+  tags:
+    - staging
+
+deploy:
+  variables:
+    SERVER_IP: 10.156.0.10
+    RUN_ARGS: -p 2005:3000
+  stage: deploy
+  script:
+    - chmod og= $STAGING_SSH_KEY
+    - echo $GCLOUD_SERVICE_KEY | base64 -d > gcloud-service-key.json
+    - scp -i $STAGING_SSH_KEY -o StrictHostKeyChecking=no gcloud-service-key.json staging@$SERVER_IP:/tmp/gcloud-service-key.json
+    - ssh -i $STAGING_SSH_KEY -o StrictHostKeyChecking=no staging@$SERVER_IP "cat /tmp/gcloud-service-key.json | docker login -u _json_key --password-stdin https://gcr.io"
+    - ssh -i $STAGING_SSH_KEY -o StrictHostKeyChecking=no staging@$SERVER_IP "docker stop universa-staging || true"
+    - ssh -i $STAGING_SSH_KEY -o StrictHostKeyChecking=no staging@$SERVER_IP "docker rm universa-staging || true"
+    - ssh -i $STAGING_SSH_KEY -o StrictHostKeyChecking=no staging@$SERVER_IP "docker pull ${IMAGE_NAME}"
+    - ssh -i $STAGING_SSH_KEY -o StrictHostKeyChecking=no staging@$SERVER_IP "docker run -d ${RUN_ARGS} --name universa-staging ${IMAGE_NAME}"
+  only:
+    - main
+  tags:
+    - staging
+
+deploy_production:
+  variables:
+    SERVER_IP: 10.186.0.2
+    RUN_ARGS: -p 2006:3000
+  stage: deploy
+  script:
+    - chmod og= $PRODUCTION_SSH_KEY
+    - echo $GCLOUD_SERVICE_KEY | base64 -d > gcloud-service-key.json
+    - scp -i $PRODUCTION_SSH_KEY -o StrictHostKeyChecking=no gcloud-service-key.json production@$SERVER_IP:/tmp/gcloud-service-key.json
+
+    - ssh -i $PRODUCTION_SSH_KEY -o StrictHostKeyChecking=no production@$SERVER_IP "cat /tmp/gcloud-service-key.json | docker login -u _json_key --password-stdin https://gcr.io"
+    # - ssh -i $STAGING_SSH_KEY -o StrictHostKeyChecking=no staging@10.156.0.10 "gcloud auth activate-service-account --key-file=/tmp/gcloud-service-key.json"
+    # - ssh -i $STAGING_SSH_KEY -o StrictHostKeyChecking=no staging@10.156.0.10 "rm keys.json"
+    - ssh -i $PRODUCTION_SSH_KEY -o StrictHostKeyChecking=no production@$SERVER_IP "docker stop universa-production || true"
+    - ssh -i $PRODUCTION_SSH_KEY -o StrictHostKeyChecking=no production@$SERVER_IP "docker rm universa-production || true"
+    - ssh -i $PRODUCTION_SSH_KEY -o StrictHostKeyChecking=no production@$SERVER_IP "docker pull ${IMAGE_NAME}"
+    - ssh -i $PRODUCTION_SSH_KEY -o StrictHostKeyChecking=no production@$SERVER_IP "docker run -d ${RUN_ARGS} --name universa-production ${IMAGE_NAME}"
+    # Тут может быть скрипт для SSH и запуска Docker контейнера на целевом сервере
+  only:
+    - main
+  when: manual
+  tags:
+    - staging
