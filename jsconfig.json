@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./*"],
+        "@app": ["./app/*"],
+        "@constants/*": ["./constants/*"],
+        "@components/*": ["./components/*"],
+        "@fonts/*": ["./public/fonts/*"],
+        "@animations/*": ["./animations/*"],
+        "@assets/*": ["./assets/*"],
+        "@config/*": ["./config/*"],
+        "@lib/*": ["./lib/*"],
+        "@public/*": ["public/*"],
+        "@services/*": ["./services/*"],
+      }
+    }
+  }
+  

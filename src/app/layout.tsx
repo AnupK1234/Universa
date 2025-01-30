@@ -98,6 +98,7 @@ import localFont from "next/font/local";
 import Logo from "@/components/Logo";
 import SubFooter from "@/components/SubFooter";
 import Menu from "@/components/Menu";
+import ReduxProvider from "./ReduxProvider";
 
 import "@nuahorg/universa-ui-kit/dist/tailwind.css";
 import "./globals.css";
@@ -198,7 +199,7 @@ export default function RootLayout({
           </div>
         )}
       
-        <div>{children}</div>
+        <div><ReduxProvider>{children}</ReduxProvider></div>
         {!isEarthPage || isHealthcarePage && (
           <>
             <div className="container">
