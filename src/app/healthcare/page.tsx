@@ -21,6 +21,11 @@ import {
 } from "./lib/store/healthcare";
 import { SnapSection } from "./components/molecules/snap-section";
 import { useOutsideClick } from "./lib/hooks/useOutsideClick";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "./redux/slice/userSlice";
+import { setAuthType, setAuthModalOpen } from "./redux/slice/authSlice";
+import Auth from "./components/Auth/SignUp";
+import Cookie from "js-cookie";
 
 const sections = [
   {
@@ -75,13 +80,15 @@ const sections = [
   },
 ];
 
-const SnapScrollWithFixedBackground = () => {
+const SnapScrollWithFixedBackground = ({isChatBotOpened}) => {
   const [currentImage, setCurrentImage] = useState(sections[0].image);
   const { setChatBotOpened } = useHealthCareStore();
+  const dispatch = useDispatch();
+  const { isLoggedIn, user } = useSelector((state: any) => state.user);
 
   const isMobile = () =>
     /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
-      navigator.userAgent
+      navigator.userAgent,
     );
 
   const hideAddressBar = () => {
@@ -181,7 +188,7 @@ const SnapScrollWithFixedBackground = () => {
 
       {/* AI Doctor Button */}
       <AnimatePresence>
-        {currentImage !== sections[9].image && (
+        {currentImage !== sections[9].image && !isChatBotOpened && (
           <motion.div
             className="fixed z-10 bottom-10 mobile:bottom-8 self-center"
             initial={{ y: 500, opacity: 0 }}
@@ -193,7 +200,8 @@ const SnapScrollWithFixedBackground = () => {
               className="py-8 mobile:py-4 px-12 font-cera font-medium w-fit bg-healthcare-accent text-black flex flex-col h-fit rounded-full text-xl"
               text="CHAT TO AI DOCTOR"
               onClick={() => {
-                setChatBotOpened(true);
+                if(isLoggedIn) setChatBotOpened(true);
+                else dispatch(setAuthModalOpen())
               }}
             />
           </motion.div>
@@ -210,8 +218,6 @@ const SnapScrollWithFixedBackground = () => {
     </div>
   );
 };
-
-
 
 const customPlayIcon = (
   <div
@@ -237,23 +243,35 @@ export default function Home() {
   const [isVideoPlaying, setVideoPlaying] = useState(false);
   // localStorage.setItem("isUserFirstTime", JSON.stringify(true))
   // alert(isUserFirstTime)
+  const dispatch = useDispatch();
+  const { isLoggedIn, user } = useSelector((state: any) => state.user);
+  const { authModalOpen, authType } = useSelector((state: any) => state.auth);
+  const [mounted, setMounted] = useState(false);
 
   const parentRef = useRef<HTMLDivElement>(null);
 
-
   const isMobile = () =>
     /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
-      navigator.userAgent
+      navigator.userAgent,
     );
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const componentRef = useOutsideClick<HTMLDivElement>(() =>
     setChatBotOpened(false),
   );
 
+  const handleLogout = async () => {
+    Cookie.remove("token");
+    Cookie.remove("userObject");
+    dispatch(logout());
+  };
+
   useEffect(() => {
     setTimeout(() => {
       setCanShowVideo(true);
-     
     }, 1000);
   }, []);
 
@@ -262,7 +280,30 @@ export default function Home() {
       className="flex flex-col items-center justify-center scrollbar-none"
       style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
     >
-      <SnapScrollWithFixedBackground />
+      {!isChatBotOpened &&
+        (isLoggedIn ? (
+          <button
+            onClick={handleLogout}
+            className="font-cera bg-gray-700 pl-2 rounded-full z-20 fixed top-10 right-10 flex items-center"
+          >
+            <span className="px-2 text-white">
+              {user.email || "user@gmail.com"}
+            </span>
+            <div className="bg-slate-600 p-4 rounded-full text-white">
+              <img src="/out-sign.svg" className="h-6" />
+            </div>
+          </button>
+        ) : (
+          <div
+            className="flex py-4 px-4 font-cera bg-healthcare-accent text-[#1C293C] rounded-full font-medium z-20 fixed top-10 right-10"
+            onClick={() => dispatch(setAuthModalOpen())}
+          >
+            <img src="/in-sign.svg" alt="" className="mr-2" />
+            Sign in
+          </div>
+        ))}
+
+      <SnapScrollWithFixedBackground isChatBotOpened={isChatBotOpened} />
 
       {isChatBotOpened && (
         <motion.button
@@ -291,7 +332,7 @@ export default function Home() {
           >
             <div
               ref={componentRef}
-              className="w-[90%] h-[90%] mobile:h-full desktop-lg:w-fit desktop-qhd:w-fit flex flex-col desktop-qhd:flex-row desktop-lg:flex-row desktop:flex-row items-center justify-center"
+              className="w-[90%] h-[90%] mobile:h-full desktop-lg:w-fit desktop-qhd:w-fit flex flex-col desktop-qhd:flex-row desktop-lg:flex-row desktop:flex-row items-center justify-center "
             >
               <Chatbot />
               <motion.button
@@ -359,7 +400,8 @@ export default function Home() {
           </motion.div>
         ) : null}
       </AnimatePresence>
+
+      {authModalOpen && <Auth />}
     </div>
   );
 }
-

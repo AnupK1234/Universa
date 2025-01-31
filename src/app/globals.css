@@ -310,3 +310,10 @@ main {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* For Safari */
 }
+
+
+@layer utilities {
+  .mybor {
+    border: 2px solid red;
+  }
+}

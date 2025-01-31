@@ -43,7 +43,7 @@ const SignIn = () => {
           expires: 1,
         });
         dispatch(setAuthModalOpen());
-        router.push("/");
+        router.push("/healthcare");
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -254,7 +254,7 @@ const SignUp = () => {
           expires: 1,
         });
         // dispatch(setAuthModalOpen())
-        navigate.push("/");
+        navigate.push("/healthcare");
         setStep(2); // Move to OTP step after successful signup
       }
     } catch (error) {

@@ -65,7 +65,7 @@ const ChatInput = ({ setInput, handleSend, input, handleFileUpload }) => {
           className="p-2 bg-white/10 rounded-full"
           onClick={() => setShowFileOptions(!showFileOptions)}
         >
-          <PaperclipICO className="w-5 h-5" />
+          <PaperclipICO className="w-8 h-8" />
         </button>
         {showFileOptions && (
           <div className="absolute bottom-full left-0 mb-2 bg-[#353D5A] rounded-lg shadow-lg">
@@ -119,18 +119,18 @@ const ChatInput = ({ setInput, handleSend, input, handleFileUpload }) => {
         <div className="flex items-center gap-2">
           <button
             className={`p-2 ${
-              input.trim() ? "bg-accent" : "bg-teal-700"
+              input.trim() ? "bg-healthcare-accent" : "bg-teal-700"
             } rounded-full`}
             onClick={handleSend}
             disabled={!input.trim()}
           >
-            <SendICO className="w-5 h-5" />
+            <SendICO className="w-8 h-8" />
           </button>
           <button className="p-2 bg-white/10 rounded-full">
-            <MicICO className="w-5 h-5" />
+            <MicICO className="w-8 h-8" />
           </button>
           <button className="hidden md:block p-2 bg-white/10 rounded-full">
-            <CameraICO className="w-5 h-5" />
+            <CameraICO className="w-8 h-8" />
           </button>
         </div>
       </div>
