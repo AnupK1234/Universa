@@ -7,7 +7,7 @@ export const Dialog = ({ open, onOpenChange, children }) => {
         className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
         onClick={() => onOpenChange(false)}
       />
-      <div className="fixed z-50 flex flex-col rounded-xl bg-slate-900 shadow-xl border border-slate-800 animate-in fade-in-0 zoom-in-95">
+      <div className="p-4 fixed z-50 flex flex-col rounded-xl bg-slate-900 shadow-xl border border-slate-800 animate-in fade-in-0 zoom-in-95">
         {children}
       </div>
     </div>
@@ -25,7 +25,7 @@ export const DialogHeader = ({ children }) => (
 );
 
 export const DialogTitle = ({ children }) => (
-  <h2 className="text-xl font-semibold tracking-tight text-slate-100">
+  <h2 className="text-3xl font-semibold tracking-tight text-slate-100">
     {children}
   </h2>
 );

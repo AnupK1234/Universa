@@ -286,16 +286,16 @@ export default function Home() {
             onClick={handleLogout}
             className="font-cera bg-gray-700 pl-2 rounded-full z-20 fixed top-10 right-10 flex items-center"
           >
-            <span className="px-2 text-white">
+            <span className="px-3 py-5 text-white">
               {user.email || "user@gmail.com"}
             </span>
-            <div className="bg-slate-600 p-4 rounded-full text-white">
-              <img src="/out-sign.svg" className="h-6" />
+            <div className="bg-slate-600 p-5 rounded-full text-white">
+              <img src="/out-sign.svg" className="h-7" />
             </div>
           </button>
         ) : (
           <div
-            className="flex py-4 px-4 font-cera bg-healthcare-accent text-[#1C293C] rounded-full font-medium z-20 fixed top-10 right-10"
+            className="flex py-7 px-6 font-cera bg-healthcare-accent text-[#1C293C] rounded-full font-medium text-3xl z-20 fixed top-10 right-10"
             onClick={() => dispatch(setAuthModalOpen())}
           >
             <img src="/in-sign.svg" alt="" className="mr-2" />

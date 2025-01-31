@@ -245,7 +245,7 @@ const SimliElevenlabs: React.FC<SimliElevenlabsProps> = ({
             {isLoading ? (
               <IconSparkleLoader className="h-[20px] animate-loader" />
             ) : (
-              <span className="font-abc-repro-mono font-bold w-[164px]">
+              <span className="text-3xl font-bold">
                 Start Avatar Interaction
               </span>
             )}
@@ -259,7 +259,7 @@ const SimliElevenlabs: React.FC<SimliElevenlabsProps> = ({
                   'mt-4 group text-white flex-grow bg-red hover:rounded-sm hover:bg-white h-[52px] px-6 rounded-[100px] transition-all duration-300'
                 )}
               >
-                <span className="font-abc-repro-mono group-hover:text-black font-bold w-[164px] transition-all duration-300">
+                <span className="text-3xl group-hover:text-black font-bold w-[164px] transition-all duration-300">
                   Stop Interaction
                 </span>
               </button>

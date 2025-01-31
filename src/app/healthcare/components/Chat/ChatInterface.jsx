@@ -234,7 +234,7 @@ const ChatInterface = () => {
           <div className="hidden md:flex gap-2 justify-center lg:p-5 mt-auto">
             <button
               onClick={() => setShowChatHistory(!showChatHistory)}
-              className={`lg:w-1/2 flex items-center justify-center gap-2 px-6 py-4 rounded-full text-sm font-cera font-bold ${
+              className={`lg:w-1/2 flex items-center justify-center gap-2 px-6 py-4 rounded-full text-2xl font-cera font-bold ${
                 showChatHistory
                   ? "bg-[#515F86] text-white"
                   : "bg-[#3D4B72] text-white"
@@ -244,7 +244,7 @@ const ChatInterface = () => {
               {showChatHistory ? "CLOSE" : "CHAT HISTORY"}
             </button>
             <button
-              className="lg:w-1/2 flex items-center justify-center gap-2 bg-[#11F4D1] px-6 py-4 rounded-full text-[#2B344C] text-sm font-cera font-bold"
+              className="lg:w-1/2 flex items-center justify-center gap-2 bg-[#11F4D1] px-6 py-4 rounded-full text-[#2B344C] text-2xl font-cera font-bold"
               onClick={() => setIsFormOpen(true)}
             >
               <AddIcon />

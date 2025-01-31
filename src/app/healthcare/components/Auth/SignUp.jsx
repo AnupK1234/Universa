@@ -60,7 +60,7 @@ const SignIn = () => {
   return (
     <>
       <div className="min-h-screen flex items-center justify-center">
-        <div className="relative w-full max-w-lg p-10 bg-[#1e233d] rounded-3xl">
+        <div className="relative w-full max-w-3xl p-20 bg-[#1e233d] rounded-3xl">
           <button
             className="absolute right-4 top-4 bg-white bg-opacity-10 rounded-full p-2"
             onClick={() => dispatch(setAuthModalOpen())}
@@ -68,19 +68,19 @@ const SignIn = () => {
             <X size={20} />
           </button>
 
-          <h1 className="font-cera text-3xl font-semibold text-white mb-8 text-center">
+          <h1 className="font-cera text-5xl font-semibold text-white mb-8 text-center">
             Sign in
           </h1>
           {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
 
-          <form className="space-y-2" onSubmit={handleSubmit}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email address"
-                className="w-full px-4 py-5 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
+                className="w-full px-5 py-6 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
               />
             </div>
 
@@ -90,7 +90,7 @@ const SignIn = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="w-full px-4 py-5 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
+                className="w-full px-5 py-6 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
               />
               <button
                 type="button"
@@ -106,7 +106,7 @@ const SignIn = () => {
             <button
               type="submit"
               disabled={isButtonDisabled}
-              className={`w-full py-5 px-4 bg-gradient-to-r from-[#11F4D1] to-[#7C1DCE] hover:bg-gradient-to-r hover:from-[#7C1DCE] hover:to-[#11F4D1] text-white rounded-[50px] font-cera font-medium hover:opacity-90 transition-opacity flex justify-center items-center ${
+              className={`w-full px-5 py-6 bg-gradient-to-r from-[#11F4D1] to-[#7C1DCE] hover:bg-gradient-to-r hover:from-[#7C1DCE] hover:to-[#11F4D1] text-white rounded-[50px] font-cera font-medium hover:opacity-90 transition-opacity flex justify-center items-center ${
                 isButtonDisabled ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >
@@ -114,7 +114,7 @@ const SignIn = () => {
               <img src="/arrow-right.svg" className="ml-2" />
             </button>
           </form>
-          <div className="text-white font-medium font-cera flex justify-center items-center border-white border-t-2 border-opacity-5 mt-8 pt-3">
+          <div className="text-2xl text-white font-medium font-cera flex justify-center items-center border-white border-t-2 border-opacity-5 mt-8 pt-3">
             Don't have an account yet?
             <button
               className="text-teal-400 hover:underline ml-2 flex items-center justify-center"
@@ -270,7 +270,7 @@ const SignUp = () => {
       case 1:
         return (
           <>
-            <form className="space-y-2" onSubmit={handleSubmit}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               {/* Your existing form fields */}
               <div>
                 <input
@@ -278,7 +278,7 @@ const SignUp = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Name"
-                  className="w-full px-4 py-5 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
+                  className="w-full px-5 py-6 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
                 />
               </div>
               {/* ... other fields ... */}
@@ -288,7 +288,7 @@ const SignUp = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email address"
-                  className="w-full px-4 py-5 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
+                  className="w-full px-5 py-6 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
                 />
               </div>
 
@@ -298,7 +298,7 @@ const SignUp = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="w-full px-4 py-5 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
+                  className="w-full px-5 py-6 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
                 />
                 <button
                   type="button"
@@ -317,7 +317,7 @@ const SignUp = () => {
                   value={repeatPassword}
                   onChange={(e) => setRepeatPassword(e.target.value)}
                   placeholder="Repeat password"
-                  className="w-full px-4 py-5 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
+                  className="w-full px-5 py-6 bg-[#353D5A] rounded-[50px] text-white font-medium placeholder-[#717EAC] border-2 border-[#717EAC] focus:outline-none focus:ring-2 text-center placeholder:text-center"
                 />
                 <button
                   type="button"
@@ -331,7 +331,7 @@ const SignUp = () => {
               </div>
               <button
                 type="submit"
-                className="w-full py-5 px-4 bg-gradient-to-r from-[#11F4D1] to-[#7C1DCE] hover:bg-gradient-to-r hover:from-[#7C1DCE] hover:to-[#11F4D1] text-white rounded-[50px] font-cera font-medium"
+                className="w-full px-5 py-6 bg-gradient-to-r from-[#11F4D1] to-[#7C1DCE] hover:bg-gradient-to-r hover:from-[#7C1DCE] hover:to-[#11F4D1] text-white rounded-[50px] font-cera font-medium"
               >
                 CONFIRM
                 <img src="/arrow-right.svg" className="ml-2 inline" />
@@ -351,14 +351,14 @@ const SignUp = () => {
 
       case 2:
         return (
-          <div className="space-y-6">
-            <p className="text-white text-center">
+          <div className="space-y-7 p-10">
+            <p className="text-3xl text-white text-center">
               The confirmation code was sent to
               <br />
               <span className="text-[#11F4D1]">{email}</span>. Enter the code in
               the following fields:
             </p>
-            <div className="flex justify-center gap-2">
+            <div className="flex justify-center gap-4">
               {otp.map((digit, index) => (
                 <>
                 <input
@@ -369,13 +369,13 @@ const SignUp = () => {
                   value={digit}
                   onChange={(e) => handleOtpChange(e.target, index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
-                  className="w-12 h-12 text-center bg-[#353D5A] rounded-lg text-white border-2 border-[#717EAC] focus:border-[#11F4D1] focus:outline-none"
+                  className="w-20 h-20 text-center bg-[#353D5A] rounded-lg text-white border-2 border-[#717EAC] focus:border-[#11F4D1] focus:outline-none"
                 />
                 {index == 2 && <span className="flex items-center"><DashICO className="h-4 w-4"/></span>}
                 </>
               ))}
             </div>
-            <div className="text-center text-white text-sm">
+            <div className="text-center text-white text-3xl">
               Didn't receive an email? Wait {countdown} seconds and
               <button
                 className={`${countdown ? "text-white opacity-30" : "text-[#11F4D1] hover:underline"} ml-1`}
@@ -390,8 +390,8 @@ const SignUp = () => {
 
       case 3:
         return (
-          <div className="text-center space-y-6">
-            <h2 className="text-white text-xl">
+          <div className="text-center space-y-8 p-8">
+            <h2 className="text-white text-3xl">
               Your email address (
               <span className="text-[#11F4D1]">{email}</span>) is now confirmed!
             </h2>
@@ -411,7 +411,7 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="relative w-full max-w-lg p-10 bg-[#1e233d] rounded-3xl">
+      <div className="relative w-full max-w-3xl p-16 bg-[#1e233d] rounded-3xl">
         <button
           className="absolute right-4 top-4 bg-white bg-opacity-10 rounded-full p-2"
           onClick={() => dispatch(setAuthModalOpen())}
@@ -419,7 +419,7 @@ const SignUp = () => {
           <X size={20} />
         </button>
 
-        <h1 className="font-cera text-3xl font-semibold text-white mb-8 text-center">
+        <h1 className="font-cera text-4xl font-semibold text-white mb-8 text-center">
           Sign up
         </h1>
 
@@ -438,7 +438,7 @@ const Auth = () => {
     <>
       {authModalOpen && (
         <motion.section
-          className="top-0 w-full h-full fixed z-50 backdrop-blur-[2px]"
+          className="top-0 w-full h-full fixed z-50 backdrop-blur-[3px]"
           initial={{ y: 300 }}
           animate={{ y: 0 }}
         >

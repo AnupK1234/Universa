@@ -91,13 +91,13 @@ const MultiStepForm = ({ isOpen, onClose, convoType, handleConversationStart }) 
     }
 
     return questionsToShow.map((item, index) => (
-      <div key={index} className="space-y-2">
-        <label className="text-lg font-medium text-slate-300">
+      <div key={index} className="space-y-4 text-2xl">
+        <label className="font-medium text-slate-300">
           {item.question}
         </label>
 
         <textarea
-          className="w-full rounded-md border border-slate-700 bg-slate-800 px-3 py-2 h-24 
+          className="w-full rounded-md border border-slate-700 bg-slate-800 px-3 py-2 h-32 
           resize-none overflow-y-auto text-slate-100 placeholder:text-slate-500
           focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={item.answer}
@@ -112,7 +112,7 @@ const MultiStepForm = ({ isOpen, onClose, convoType, handleConversationStart }) 
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl md:max-w-3xl">
         <DialogHeader>
           <DialogTitle>Medical Questionnaire - Step {step} of 3</DialogTitle>
         </DialogHeader>
@@ -123,7 +123,7 @@ const MultiStepForm = ({ isOpen, onClose, convoType, handleConversationStart }) 
           {step > 1 && (
             <Button
               onClick={() => setStep(step - 1)}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 p-8 text-2xl"
             >
               <FiChevronLeft /> Previous
             </Button>
@@ -133,7 +133,7 @@ const MultiStepForm = ({ isOpen, onClose, convoType, handleConversationStart }) 
             <Button
               onClick={() => setStep(step + 1)}
               disabled={!isStepValid()}
-              className="flex items-center gap-2 ml-auto"
+              className="flex items-center gap-2 ml-auto p-8 text-2xl"
             >
               Next <FiChevronRight />
             </Button>
@@ -141,7 +141,7 @@ const MultiStepForm = ({ isOpen, onClose, convoType, handleConversationStart }) 
             <Button
               onClick={handleSubmit}
               disabled={!isStepValid() || isLoading}
-              className="flex items-center gap-2 ml-auto"
+              className="flex items-center gap-2 ml-auto p-8 text-2xl"
             >
               Start Conversation
             </Button>
