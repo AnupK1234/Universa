@@ -22,7 +22,7 @@ const MessagesSection = ({ messages, isTyping }) => {
   return (
     <div className="h-[70vh] md:h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
       {messages.length ? (
-        messages?.map((message, index) => <MessageContent message={message} />)
+        messages?.map((message, index) => <MessageContent message={message} key={index} />)
       ) : (
         <div className="mb-2 lg:flex">
           <div className={`${avatar ? "block" : "hidden"}  lg:hidden`}>

@@ -14,7 +14,7 @@ const avatar: avatarSettings = {
   simli_faceid: "5514e24d-6086-46a3-ace4-6a7264e5cb7c",
 };
 
-const Avatar3: React.FC = ({className}) => {
+const Avatar3: React.FC = ({className} : any) => {
   const [showDottedFace, setShowDottedFace] = useState(true);
 
   const onStart = () => {

@@ -80,7 +80,7 @@ const sections = [
   },
 ];
 
-const SnapScrollWithFixedBackground = ({isChatBotOpened}) => {
+const SnapScrollWithFixedBackground = ({isChatBotOpened} : any) => {
   const [currentImage, setCurrentImage] = useState(sections[0].image);
   const { setChatBotOpened } = useHealthCareStore();
   const dispatch = useDispatch();
